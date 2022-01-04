@@ -1,0 +1,15 @@
+# Dependency directories
+node_modules/
+
+# IDE files
+.idea
+.vscode/
+.editorconfig
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# MacOs system file
+.DS_Store
