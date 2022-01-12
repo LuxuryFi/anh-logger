@@ -7,4 +7,4 @@ rules:
     [error, { allow: ["_id"] }]
   max-len:
     # keep airbnb's 100 char's per code line but ignore the rule for comments
-    [error, { code: 100, ignoreComments: true, ignoreStrings: true, ignoreTemplateLiterals: true }]
+    [error, { code: 150, ignoreComments: true, ignoreStrings: true, ignoreTemplateLiterals: true }]

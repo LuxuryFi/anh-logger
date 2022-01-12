@@ -1,3 +1,5 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable prefer-destructuring */
 const path = require('path');
 const uuid = require('uuid/v4');
 const cls = require('cls-hooked');
@@ -87,14 +89,14 @@ const trace = (args) => {
 
 class Logger {
   constructor(config) {
-    // if (config === undefined || config.correlationIdNamespace === undefined || config.correlationIdName === undefined || config.level === undefined) {
-    //   throw new Error('Wrong config.');
-    // }
+    if (config === undefined || config.correlationIdNamespace === undefined || config.correlationIdName === undefined || config.level === undefined) {
+      throw new Error('Wrong config.');
+    }
     // ensure singleton
     // check if a logger instance exists. prevents clashing with logger in audit-logger
-    if (!!Logger.instance) {
+    if (Logger.instance) {
       return Logger.instance;
-    } 
+    }
 
     correlationIdNamespace = config.correlationIdNamespace;
     correlationIdName = config.correlationIdName;
