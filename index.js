@@ -12,16 +12,16 @@ let correlationIdName;
  * Get correlation id from cls and set it as a part of winston info object.
  * @returns {Object}
  */
-// const addCorrelationIdContext = winston.format.printf((info) => {
-//   const infoData = {};
-//   try {
-//     const correlationId = cls.getNamespace(correlationIdNamespace).get(correlationIdName);
-//     infoData.correlationId = !correlationId ? uuid() : correlationId;
-//   } catch (e) {
-//     this.correlationId = uuid();
-//   }
-//   return Object.assign(info, infoData);
-// });
+const addCorrelationIdContext = winston.format.printf((info) => {
+  const infoData = {};
+  try {
+    const correlationId = cls.getNamespace(correlationIdNamespace).get(correlationIdName);
+    infoData.correlationId = !correlationId ? uuid() : correlationId;
+  } catch (e) {
+    this.correlationId = uuid();
+  }
+  return Object.assign(info, infoData);
+});
 
 /**
  * Create logger instance
@@ -30,11 +30,11 @@ const logger = winston.createLogger({
   format: winston.format.combine(
     winston.format.timestamp(),
     winston.format.metadata({ fillExcept: ['message', 'level', 'timestamp', 'stack'] }),
-    // addCorrelationIdContext,
+    addCorrelationIdContext,
     winston.format.printf(info => JSON.stringify({
       microservices: {
         level: info.level,
-        // correlationId: info.correlationId,
+        correlationId: info.correlationId,
         timestamp: info.timestamp,
         script: this.stackData.script,
         action: this.stackData.action,
@@ -96,8 +96,8 @@ class Logger {
       return Logger.instance;
     } 
 
-    // correlationIdNamespace = config.correlationIdNamespace;
-    // correlationIdName = config.correlationIdName;
+    correlationIdNamespace = config.correlationIdNamespace;
+    correlationIdName = config.correlationIdName;
     logger.level = config.level;
     Logger.instance = this;
 

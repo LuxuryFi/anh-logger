@@ -1,3 +1,7 @@
+# [v0.0.4]
+## Added
+- Uncomment the correlation part
+
 # [v0.0.3]
 ## Added
 - Fix gitlab links
