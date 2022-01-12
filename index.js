@@ -89,9 +89,9 @@ const trace = (args) => {
 
 class Logger {
   constructor(config) {
-    if (config === undefined || config.correlationIdNamespace === undefined || config.correlationIdName === undefined || config.level === undefined) {
-      throw new Error('Wrong config.');
-    }
+    // if (config === undefined || config.correlationIdNamespace === undefined || config.correlationIdName === undefined || config.level === undefined) {
+    //   throw new Error('Wrong config.');
+    // }
     // ensure singleton
     // check if a logger instance exists. prevents clashing with logger in audit-logger
     if (Logger.instance) {
